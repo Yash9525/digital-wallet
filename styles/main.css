@@ -1,0 +1,169 @@
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+#app { flex-grow: 1; }
+.modal-backdrop { background-color: rgba(0,0,0,0.6); }
+.tab-button[aria-selected="true"] { border-color: #3b82f6; color: #3b82f6; }
+.tab-button[aria-selected="false"] { border-color: transparent; }
+.status-badge { padding: 0.25rem 0.6rem; font-size: 0.75rem; border-radius: 9999px; font-weight: 500; }
+.status-pending { background-color: #fef9c3; color: #854d0e; }
+.form-field-group { display: none; }
+.signup-mode .form-field-group { display: block; }
+
+#page-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  overflow-y: auto;
+}
+
+#notification-toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 60;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translateX(400px);
+  opacity: 0;
+  max-width: 380px;
+  width: 90%;
+}
+
+#notification-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-content {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.toast-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  margin-top: 2px;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.toast-close {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: background 0.2s;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.toast-close svg {
+  width: 14px;
+  height: 14px;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  transform-origin: left;
+  animation: progress 3s linear forwards;
+}
+
+@keyframes progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+.tx-item-clickable {
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+}
+.tx-item-clickable:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+@keyframes borderAnimation {
+  0% { border-color: #ff0000; }
+  25% { border-color: #00ff00; }
+  50% { border-color: #0000ff; }
+  75% { border-color: #ffff00; }
+  100% { border-color: #ff00ff; }
+}
+
+.colorful-border {
+  border: 2px solid;
+  animation: borderAnimation 3s linear infinite;
+  border-radius: 12px;
+}
+
+.header-border {
+  border-bottom: 2px solid;
+  animation: borderAnimation 3s linear infinite;
+}
+
+.payment-option.selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.coming-soon {
+  position: relative;
+  opacity: 0.6;
+}
+
+.coming-soon::after {
+  content: "Coming Soon";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+@keyframes animate-modal-in { 
+  to { scale: 1; opacity: 1; } 
+}
+.animate-modal-in { 
+  animation: animate-modal-in 0.2s ease-out forwards; 
+}

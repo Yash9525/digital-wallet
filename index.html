@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wallet - Reviews World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
+    <!-- Main App Container -->
+    <div id="app" class="container mx-auto p-4 max-w-7xl relative">
+        <!-- Auth Screen -->
+        <div id="auth-screen">
+            <div class="flex min-h-full items-center justify-center"><div class="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+                <div class="flex justify-center items-center mb-6">
+                    <img src="https://i.ibb.co/GvYWQFcg/Reviews-world-logo.png" alt="Reviews World Logo" class="w-12 h-12 rounded-full mr-4" loading="lazy" decoding="async">
+                    <div>
+                        <h2 class="text-2xl font-bold">Digital Wallet</h2>
+                        <p class="text-xs text-gray-500">REVIEWS WORLD</p>
+                    </div>
+                </div>
+                <h3 id="auth-title" class="text-xl font-bold text-center mb-2">Login to your Wallet</h3>
+                <div id="auth-error" class="text-red-500 text-sm mb-4 text-center"></div>
+                <form id="auth-form" data-auth-mode="login" class="space-y-4">
+                     <div class="form-field-group space-y-4">
+                         <input type="text" id="name" placeholder="Full Name" class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                         <input type="tel" id="mobile" placeholder="Mobile Number" class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <div class="relative">
+                        <input type="password" id="password" placeholder="Password" required class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="button" id="password-toggle" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400">
+                           <svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                           <svg id="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
+                        </button>
+                    </div>
+                    <button type="submit" id="auth-button" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300">Login</button>
+                </form>
+                <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6"><span id="auth-prompt">Don't have an account?</span><a href="#" id="auth-toggle" class="font-semibold text-blue-500 hover:underline">Sign Up</a></p>
+            </div></div>
+        </div>
+
+        <!-- Main Content (Logged In) -->
+        <div id="main-content" class="hidden">
+            <!-- Header with Colorful Border -->
+            <header class="flex justify-between items-center mb-6 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md header-border">
+                <div class="flex items-center">
+                    <img src="https://i.ibb.co/GvYWQFcg/Reviews-world-logo.png" alt="Reviews World Logo" class="w-10 h-10 rounded-full mr-4" loading="lazy" decoding="async">
+                    <div>
+                        <h1 class="text-xl font-bold">Digital Wallet</h1>
+                        <p class="text-xs text-gray-500 mt-0.5">REVIEWS WORLD</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="main-menu-btn" class="hidden p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Dashboard Area (Tabs) -->
+            <div id="dashboard-content">
+                <!-- Tab Navigation -->
+                <div class="mb-6 border-b border-gray-200 dark:border-gray-700">
+                    <nav id="tabs-container" class="flex space-x-4" aria-label="Tabs">
+                        <button data-tab="user-panel" class="tab-button px-3 py-2 font-medium text-sm border-b-2">My Wallet</button>
+                        <button data-tab="admin-panel" id="admin-tab-button" class="hidden tab-button px-3 py-2 font-medium text-sm border-b-2">Admin Panel</button>
+                    </nav>
+                </div>
+
+                <!-- User Panel -->
+                <div id="user-panel" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-1 space-y-6">
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"><h3 class="text-sm font-medium text-gray-500 dark:text-gray-400">Your Balance</h3><p id="user-balance" class="text-4xl font-bold mt-2">₹0.00</p></div>
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md space-y-3">
+                                <h3 class="text-lg font-semibold mb-3">Actions</h3>
+                                <button id="withdraw-fund-btn" class="w-full bg-yellow-500 text-white font-semibold py-3 rounded-lg hover:bg-yellow-600 transition">Withdraw Fund</button>
+                                <button id="redeem-gift-card-btn" class="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition">Redeem Gift Card</button>
+                                <button id="pay-to-wallet-btn" class="w-full bg-purple-500 text-white font-semibold py-3 rounded-lg hover:bg-purple-600 transition">Pay to Wallet</button>
+                                <button id="take-loan-btn" class="w-full bg-red-500 text-white font-semibold py-3 rounded-lg hover:bg-red-600 transition">Take Loan</button>
+                            </div>
+                        </div>
+                        <div class="md:col-span-2 space-y-6">
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold">Transaction History</h3>
+                                    <button id="view-all-tx-btn" class="text-sm font-medium text-blue-500 hover:underline">View All</button>
+                                </div>
+                                <div id="transactions-list" class="space-y-3 max-h-96 overflow-y-auto pr-2"><p class="text-gray-500 dark:text-gray-400">No transactions yet.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Panel Dashboard -->
+                <div id="admin-panel" class="tab-content hidden">
+                    <div class="mb-6 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+                        <h3 class="text-lg font-semibold mb-2">My Admin Wallet</h3>
+                        <p id="admin-wallet-balance" class="text-4xl font-bold text-green-500">₹0.00</p>
+                        <button id="manage-admin-wallet-btn" class="mt-4 w-full sm:w-auto px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition">Add/Remove My Funds</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md"><h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium">Total Users</h4><p id="analytics-total-users" class="text-3xl font-bold mt-2">0</p></div>
+                        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md"><h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium">Total Funds in Other Wallets</h4><p id="analytics-total-funds" class="text-3xl font-bold mt-2">₹0.00</p></div>
+                        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md"><h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium">Pending Withdrawals</h4><p id="analytics-pending-reqs" class="text-3xl font-bold mt-2">0</p></div>
+                        <div class="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md"><h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium">Gift Cards Redeemed</h4><p id="analytics-gift-cards" class="text-3xl font-bold mt-2">0</p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Full Page Panel Container -->
+            <div id="page-container" class="hidden bg-gray-100 dark:bg-gray-900">
+                <!-- Full page content will be injected here -->
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="text-center p-4 text-sm text-gray-500 dark:text-gray-400">
+        © Reviews world 2022. All rights reserved.
+    </footer>
+    
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <!-- Notification Toast Container -->
+    <div id="notification-toast"></div>
+
+    <!-- Slide-out Menu -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
+    <div id="slide-menu" class="fixed top-0 right-0 h-full w-full max-w-xs bg-white dark:bg-gray-800 shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out"></div>
+    
+    <!-- Audio elements for sound effects -->
+    <audio id="success-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="error-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Firebase & App Scripts -->
+    <script type="module" src="scripts/firebase.js"></script>
+    <script type="module" src="scripts/auth.js"></script>
+    <script type="module" src="scripts/ui.js"></script>
+    <script type="module" src="scripts/wallet.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
